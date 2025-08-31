@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # Load dataset
-df = pd.read_csv(r"C:\Users\umesh\OneDrive\Desktop\ML\DRUG\drug200.csv")
+df = pd.read_csv("drug200.csv")
 
 # Encode categorical features
 df["Sex"] = df["Sex"].map({"M": 1, "F": 0})
@@ -75,7 +75,10 @@ sns.heatmap(cm, annot=True, fmt="g", cbar=False,
 plt.title("Confusion Matrix - Logistic Regression")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-plt.show()
+# instead of plt.show(), do this (optional)
+plt.tight_layout()
+plt.savefig("confusion_matrix.png")
+
 
 # Classification Report
 print("\nClassification Report:")
@@ -96,4 +99,4 @@ iface = gr.Interface(
     description="Enter patient details to predict the most suitable drug."
 )
 
-iface.launch(share=True)  # use share=True in Colab
+iface.launch()
